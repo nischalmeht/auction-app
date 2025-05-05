@@ -12,6 +12,8 @@ const placeBid=require("./router/bidder-routes.js");
 const commissionBidroute=require("./router/commission-routes.js");
 const superAdminroute=require("./router/super-admin-routes.js");
 const endedAuctionCron = require('./automation/endedAuctuonCron.js');
+const path=require("path");
+
 // Use const for PORT
 const PORT = process.env.PORT || 3000;
 
@@ -28,6 +30,10 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 // Routes setup
+const _dirname=path.dirname("");
+const buildpath=path.join(_dirname,"../Frontend/auction/dist")
+app.use(express.static(buildpath))
+
 
 app.use(errorMiddleware);
 // Database connection
